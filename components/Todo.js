@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, Button, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, Button } from "react-native";
 import { styles } from "../styles";
 
 class Todo extends Component {
@@ -28,5 +28,4 @@ class Todo extends Component {
     );
   }
 }
-
 export default Todo;
