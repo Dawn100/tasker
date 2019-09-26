@@ -15,8 +15,8 @@ class TodoList extends Component {
         {this.props.todos.map((todo, index) => (
           <Todo
             key={index}
-            onComplete={this.props.onComplete}
-            onDelete={this.props.onDelete}
+            onComplete={()=>{this.props.onComplete(todo.id)}}
+            onDelete={()=>{this.props.onDelete(todo.id)}}
             todo={todo}
           />
         ))}
