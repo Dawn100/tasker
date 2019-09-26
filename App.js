@@ -1,19 +1,8 @@
-import React, { Component } from "react";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import TodoList from "./components/TodoList";
-import AddTodo from "./components/AddTodo";
-import { View } from "react-native";
+import MainScreen from "./MainScreen";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <View testID={"root"}>
-          <TodoList />
-          <AddTodo testID={"forma"} />
-        </View>
-      </Provider>
-    );
-  }
-}
+const AppNavigator = createSwitchNavigator({
+  Main: { screen: MainScreen }
+});
+
+export default createAppContainer(AppNavigator);

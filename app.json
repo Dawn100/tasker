@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "tasker",
-    "slug": "A simple task scheduler and todo list manager",
+    "slug": "a simple task scheduler and todo list manager",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": ["ios", "android", "web"],
@@ -12,6 +12,11 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "primaryColor": "#038C65",
+    "androidStatusBar": {
+      "backgroundColor": "#038C65",
+      "barStyle": "light-content"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

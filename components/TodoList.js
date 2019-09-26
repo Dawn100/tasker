@@ -8,10 +8,19 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.scroll = null;
   }
+
   render() {
     return (
-      <ScrollView testID={"list"}>
+      <ScrollView
+        testID={"list"}
+        contentContainerStyle={{ alignItems: "center" }}
+        ref={ref => (this.scrollView = ref)}
+        onContentSizeChange={(contentWidth, contentHeight) => {
+          this.scrollView.scrollToEnd({ animated: true });
+        }}
+      >
         {this.props.todos.map((todo, index) => (
           <Todo
             key={index}
