@@ -2,6 +2,8 @@ import { create } from "react-test-renderer";
 import React from "react";
 import Todo from "../components/Todo";
 import { mount } from "enzyme";
+import { TouchableOpacity } from "react-native";
+import { styles } from "../styles";
 
 describe("Todo", () => {
   const testTodo = {
@@ -13,7 +15,6 @@ describe("Todo", () => {
   it("should render self and subcomponents", () => {
     const todoJSON = todo.toJSON();
     expect(todoJSON).toMatchSnapshot();
-    console.log(todoJSON);
 
     expect(todoJSON.type).toEqual("View");
 
@@ -29,8 +30,11 @@ describe("Todo", () => {
     expect(todoJSON.children[0].children[2].type).toEqual("Text");
     expect(todoJSON.children[0].children[2].children[0]).toEqual("0");
   });
-  it("it  has right state", () => {
-    const todoInstance = todo.getInstance();
-    // console.log(todoInstance);
+  it("it  has right state and responds to events", () => {
+    const todoTouchableOpacity = todo.root.findByType(TouchableOpacity);
+    // console.log(todoTouchableOpacity);
+    expect(todoTouchableOpacity.props.style).toStrictEqual(styles.waiting);
+    todoTouchableOpacity.props.onPress();
+    expect(todoTouchableOpacity.props.style).toStrictEqual(styles.done);
   });
 });

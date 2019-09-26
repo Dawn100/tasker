@@ -1,5 +1,5 @@
 import { reducer } from "../redux/reducers";
-import { ADD_TODO, DELETE_TODO, addTodo, deleteTodo } from "../redux/actions";
+import { addTodo, deleteTodo, completeTodo } from "../redux/actions";
 
 it("Should return Initial State", () => {
   const returnedState = reducer(undefined, {});
@@ -54,4 +54,27 @@ it("Should handle DELETE_TODO action", () => {
 
   const newState = reducer({ todos: initialTodos }, deleteTodo(bye.id));
   expect(newState.todos).toEqual(expect.not.arrayContaining([bye]));
+});
+
+it("Should handle COMPLETE_TODO action", () => {
+  const toBeCompleted = {
+    id: 0,
+    todo: "Todo 0",
+    completed: false
+  };
+  const initialTodos = [
+    toBeCompleted,
+    {
+      id: 1,
+      todo: "Todo 1",
+      completed: false
+    }
+  ];
+
+  const newState = reducer(
+    { todos: initialTodos },
+    completeTodo(toBeCompleted.id)
+  );
+
+  expect(newState.todos[0].completed).toBe(true);
 });

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { styles } from "../styles";
 class Todo extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,9 @@ class Todo extends Component {
   }
 
   complete = () => {
-    this.setState({ completed: true });
+    this.setState({
+      style: this.state.style === styles.done ? styles.waiting : styles.done
+    });
   };
   render() {
     return (
@@ -26,14 +29,4 @@ class Todo extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  waiting: {
-    color: "#0f0f0f",
-    backgroundColor: "#ccc"
-  },
-  done: {
-    color: "#f0f0f0",
-    backgroundColor: "#008080"
-  }
-});
 export default Todo;

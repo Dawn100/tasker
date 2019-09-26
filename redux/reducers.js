@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { ADD_TODO, DELETE_TODO } from "./actions";
+import { ADD_TODO, DELETE_TODO, COMPLETE_TODO } from "./actions";
 
 const todosReducer = (state = [], action) => {
   switch (action.type) {
@@ -16,6 +16,14 @@ const todosReducer = (state = [], action) => {
       state.map((todo, index) => {
         if (todo.id === action.payload.id) {
           state.splice(index, 1);
+        }
+      });
+      return state;
+
+    case COMPLETE_TODO:
+      state.map((todo, index) => {
+        if (todo.id === action.payload.id) {
+          todo.completed = true;
         }
       });
       return state;
