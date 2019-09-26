@@ -1,17 +1,26 @@
 import { create } from "react-test-renderer";
 import React from "react";
 import Todo from "../components/Todo";
-import { mount } from "enzyme";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Button } from "react-native";
 import { styles } from "../styles";
 
 describe("Todo", () => {
-  const testTodo = {
-    id: 0,
-    todo: "Todo 0",
-    completed: false
-  };
-  const todo = create(<Todo todo={testTodo} />);
+  const testTodos = [
+    {
+      id: 0,
+      todo: "Todo 0",
+      completed: false
+    }
+  ];
+  const todo = create(
+    <Todo
+      onComplete={() => {
+        testTodos[0].completed = true;
+      }}
+      onDelete={() => {}}
+      todo={testTodos[0]}
+    />
+  );
   it("should render self and subcomponents", () => {
     const todoJSON = todo.toJSON();
     expect(todoJSON).toMatchSnapshot();
@@ -32,9 +41,26 @@ describe("Todo", () => {
   });
   it("it  has right state and responds to events", () => {
     const todoTouchableOpacity = todo.root.findByType(TouchableOpacity);
-    // console.log(todoTouchableOpacity);
     expect(todoTouchableOpacity.props.style).toStrictEqual(styles.waiting);
+
     todoTouchableOpacity.props.onPress();
-    expect(todoTouchableOpacity.props.style).toStrictEqual(styles.done);
+
+    const todoRerendered = create(
+      <Todo
+        onComplete={() => {
+          testTodo.completed = true;
+        }}
+        onDelete={() => {
+          return "Deleted";
+        }}
+        todo={testTodos[0]}
+      />
+    );
+    const todoTouchableOpacity_r = todoRerendered.root.findByType(
+      TouchableOpacity
+    );
+    expect(todoTouchableOpacity_r.props.style).toStrictEqual(styles.done);
+    const todoDeleteButton = todoRerendered.root.findByType(Button);
+    expect(todoDeleteButton.props.onPress()).toBe("Deleted");
   });
 });
