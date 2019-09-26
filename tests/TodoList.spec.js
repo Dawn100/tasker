@@ -20,4 +20,13 @@ describe("TodoList Component", () => {
     expect(todoListJSON.type).toEqual("RCTScrollView");
     expect(todoListJSON.children[0].type).toEqual("View");
   });
+  it("Todos respond to delete and complete events", () => {
+    todoList.root
+      .findByProps({ testID: "list" })
+      .props.children[0].props.onComplete();
+    todoList.root
+      .findByProps({ testID: "list" })
+      .props.children[0].props.onDelete();
+    expect(true).toBe(true);
+  });
 });

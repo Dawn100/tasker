@@ -6,6 +6,6 @@ describe("App", () => {
   it("renders", () => {
     const app = create(<App />).toJSON();
     expect(app).toMatchSnapshot();
-    expect(app.type).toEqual("RCTScrollView");
+    expect(app.type).toEqual("View");
   });
 });

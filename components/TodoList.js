@@ -11,12 +11,16 @@ class TodoList extends Component {
   }
   render() {
     return (
-      <ScrollView>
+      <ScrollView testID={"list"}>
         {this.props.todos.map((todo, index) => (
           <Todo
             key={index}
-            onComplete={()=>{this.props.onComplete(todo.id)}}
-            onDelete={()=>{this.props.onDelete(todo.id)}}
+            onComplete={() => {
+              this.props.onComplete(todo.id);
+            }}
+            onDelete={() => {
+              this.props.onDelete(todo.id);
+            }}
             todo={todo}
           />
         ))}

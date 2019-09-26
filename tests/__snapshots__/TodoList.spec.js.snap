@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TodoList Component Renders self and sub components 1`] = `
-<RCTScrollView>
+<RCTScrollView
+  testID="list"
+>
   <View>
     <View
       accessible={true}

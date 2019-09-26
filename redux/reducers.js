@@ -16,6 +16,8 @@ const todosReducer = (state = [], action) => {
       state.map((todo, index) => {
         if (todo.id === action.payload.id) {
           state.splice(index, 1);
+        } else {
+          return state;
         }
       });
       return state;

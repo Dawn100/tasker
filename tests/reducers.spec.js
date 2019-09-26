@@ -33,7 +33,7 @@ it("Should handle ADD_TODO action", () => {
   });
 });
 
-it("Should handle DELETE_TODO action", () => {
+describe("DELETE ACTION reducer", () => {
   const bye = {
     id: 0,
     todo: "Todo 0",
@@ -52,8 +52,18 @@ it("Should handle DELETE_TODO action", () => {
     }
   ];
 
-  const newState = reducer({ todos: initialTodos }, deleteTodo(bye.id));
-  expect(newState.todos).toEqual(expect.not.arrayContaining([bye]));
+  it("Should handle DELETE_TODO action", () => {
+    const newState = reducer({ todos: initialTodos }, deleteTodo(bye.id));
+    expect(newState.todos).toEqual(expect.not.arrayContaining([bye]));
+  });
+
+  it("Should handle DELETE_TODO action on wrong id", () => {
+    const newState = reducer(
+      { todos: initialTodos },
+      deleteTodo(initialTodos[0].id + 4)
+    );
+    expect(newState.todos).toEqual(expect.arrayContaining([initialTodos[0]]));
+  });
 });
 
 it("Should handle COMPLETE_TODO action", () => {
