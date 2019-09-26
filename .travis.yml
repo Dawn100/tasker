@@ -1,0 +1,9 @@
+language:node
+node:
+  -10.16.0
+npm:
+  -6.11.3
+install:
+  -npm install
+script:
+  -npm test

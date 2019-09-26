@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo should render self and subcomponents 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#ccc",
+      "color": "#0f0f0f",
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+      }
+    }
+    testID="root"
+  >
+    <Text
+      testID="name"
+    >
+      Todo 0
+    </Text>
+    <Text
+      testID="status"
+    >
+      Is complete? 
+      false
+    </Text>
+    <Text
+      testID="id"
+    >
+      0
+    </Text>
+  </View>
+</View>
+`;
