@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableHighlight,
-  ProgressBarAndroid
-} from "react-native";
-import { Card, Button, Icon } from "native-base";
+import { View, Text, TouchableHighlight } from "react-native";
+import { Card, Icon } from "native-base";
 import { styles } from "../styles";
-import Progress from "./Progress";
 
 class Todo extends Component {
   constructor(props) {

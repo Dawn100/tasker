@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, Image } from "react-native";
+import { ScrollView, View, Image } from "react-native";
 import Todo from "./Todo";
 import { connect } from "react-redux";
 import { completeTodo, deleteTodo } from "../redux/actions";
@@ -16,7 +16,7 @@ class TodoList extends Component {
         testID={"list"}
         contentContainerStyle={{ alignItems: "center", flex: 1 }}
         ref={ref => (this.scrollView = ref)}
-        onContentSizeChange={(contentWidth, contentHeight) => {
+        onContentSizeChange={() => {
           this.scrollView.scrollToEnd({ animated: true });
         }}
       >

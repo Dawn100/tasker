@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { addTodo } from "../redux/actions";
-import { Fab, Icon, Button, DatePicker, Text } from "native-base";
+import { Icon, Button, Text } from "native-base";
 
 class AddTodo extends Component {
   constructor(props) {

@@ -6,6 +6,9 @@
     "sdkVersion": "35.0.0",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
+    "android": {
+      "package": "io.github.peterkahenya.tasker"
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

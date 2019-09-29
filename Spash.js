@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Image, StatusBar } from "react-native";
-import { Text, Container } from "native-base";
+import { Text } from "native-base";
 
 class Splash extends Component {
   static navigationOptions = () => ({

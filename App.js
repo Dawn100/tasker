@@ -1,5 +1,5 @@
 import MainScreen from "./MainScreen";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import Splash from "./Spash";
 import Task from "./components/Task";
