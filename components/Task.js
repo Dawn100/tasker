@@ -59,7 +59,7 @@ class Task extends Component {
             textAlign: "center",
             fontSize: 25,
             fontWeight: "bold",
-            color: "#4f4f5d"
+            color: "#aaa"
           }}
         >
           {todo.todo}

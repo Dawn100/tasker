@@ -100,10 +100,10 @@ class AddTodo extends Component {
               style={{
                 fontSize: 18,
                 color: "#666666",
-                width: "80%",
+                width: "75%",
                 paddingLeft: 15,
-                marginTop:10
-                }}
+                marginTop: 10
+              }}
               multiline
               value={this.state.todo}
               onChangeText={todo => {
@@ -153,7 +153,7 @@ class AddTodo extends Component {
                 this.state.start === "" ||
                 this.state.stop === ""
                   ? "#fff"
-                  : "#067c23",
+                  : "#038C65",
               height: Dimensions.get("screen").width * 0.15,
               width: Dimensions.get("screen").width * 0.15,
               margin: Dimensions.get("screen").width * 0.01,
@@ -178,7 +178,7 @@ class AddTodo extends Component {
                   this.state.todo === "" ||
                   this.state.start === "" ||
                   this.state.stop === ""
-                    ? "#067c23"
+                    ? "#038C65"
                     : "#fff",
                 alignSelf: "center"
               }}
