@@ -12,7 +12,7 @@ class Splash extends Component {
 
     this.interval = setInterval(() => {
       this.main();
-    }, 3000);
+    }, 4000);
   }
 
   main = () => {
