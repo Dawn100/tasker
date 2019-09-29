@@ -1,4 +1,16 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { reducer } from "./reducers";
+import { loadState,saveStore } from "./persist";
+import { createLogger } from "redux-logger";
 
-export const store = createStore(reducer);
+const persistedState=loadState()
+console.log(persistedState)
+
+const store = createStore(reducer,persistedState.todoStore);
+
+store.subscribe(()=>{
+	saveStore(store.getState())
+})
+
+
+export default store

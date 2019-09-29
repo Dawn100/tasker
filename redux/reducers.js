@@ -5,22 +5,28 @@ const initialTodos = [
   {
     id: 0,
     todo: "Todo 0",
+    start: "16:00",
+    stop: "16:30",
     completed: false
   },
   {
     id: 1,
     todo: "Todo 1",
+    start: "17:05",
+    stop: "17:30",
     completed: true
   }
 ];
 
-const todosReducer = (state = initialTodos, action) => {
+const todosReducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
       return [
         ...state,
         {
           todo: action.payload.todo,
+          start: action.payload.start,
+          stop: action.payload.stop,
           completed: false,
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
         }

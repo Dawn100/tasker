@@ -1,45 +1,84 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import TodoList from "./components/TodoList";
-import AddTodo from "./components/AddTodo";
-import { styles } from "./styles";
 import { Container, Header, Title, Left, Right, Body } from "native-base";
 import * as Font from "expo-font";
-import { StatusBar } from "react-native";
+import { StatusBar, Image, AsyncStorage, AppState } from "react-native";
+import { createStore } from "redux";
+
+import TodoList from "./components/TodoList";
+import AddTodo from "./components/AddTodo";
+
+import { styles } from "./styles";
+import { loadState, saveStore } from "./redux/persist";
+import { reducer } from "./redux/reducers";
 
 class MainScreen extends Component {
+  static navigationOptions = () => ({
+    header: null
+  });
   constructor(props) {
     super(props);
     this.state = {
-      fontLoaded: false
+      isReady: false
     };
+    this.store = null;
   }
 
   async componentDidMount() {
-    //Load the font
     await Font.loadAsync({
       Roboto_medium: require("./assets/Roboto_medium.ttf")
     });
-    this.setState({ fontLoaded: true });
+
+    const persistedState = await loadState();
+    if (persistedState !== undefined) {
+      const today = new Date().getDay();
+      const last = new Date(persistedState.time).getDay();
+
+      if (today === last) {
+        this.store = createStore(reducer, persistedState.todoStore);
+      } else {
+        this.store = createStore(reducer);
+      }
+    } else {
+      this.store = createStore(reducer);
+    }
+
+    this.store.subscribe(() => {
+      saveStore(this.store.getState());
+    });
+
+    this.setState({ isReady: true });
   }
 
+  startTask = todo => {
+    this.props.navigation.navigate("Task", { todo: todo });
+  };
   render() {
-    if (!this.state.fontLoaded) {
+    if (!this.state.isReady) {
       return null;
     }
+
     return (
-      <Provider store={store}>
+      <Provider store={this.store}>
         <Container style={styles.app} testID={"root"}>
-          <Header style={{ backgroundColor: "#018374", height: 60 }}>
-            <StatusBar backgroundColor={"#018374f0"} />
-            <Left style={{ flex: 1 }} />
+          <Header style={{ backgroundColor: "#038C65f2", height: 60 }}>
+            <StatusBar backgroundColor={"#038C65ff"} />
+            <Left
+              style={{
+                flex: 1
+              }}
+            >
+              <Image
+                style={{ width: 30, height: 30 }}
+                source={require("./assets/icon.png")}
+              />
+            </Left>
             <Body style={{ flex: 1 }}>
-              <Title style={{ color: "#fff" }}>Todo List</Title>
+              <Title style={{ color: "#fff" }}>Tasks List</Title>
             </Body>
             <Right style={{ flex: 1 }} />
           </Header>
-          <TodoList />
+          <TodoList onItemSelected={this.startTask} />
           <AddTodo testID={"form"} />
         </Container>
       </Provider>

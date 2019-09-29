@@ -5,7 +5,7 @@ export const COMPLETE_TODO = "COMPLETE_TODO";
 
 /*  Action Creators    */
 export const addTodo = todo => {
-  return { type: ADD_TODO, payload: { todo } };
+  return { type: ADD_TODO, payload: todo };
 };
 
 export const deleteTodo = id => {
